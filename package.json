@@ -16,13 +16,14 @@
     "cors": "^2.8.5",
     "express": "^4.17.3",
     "jwt-simple": "^0.5.6",
-    "knex": "^1.0.4",
     "moment": "^2.29.1",
     "passport": "^0.5.2",
     "passport-jwt": "^4.0.0",
     "pg": "^8.7.3"
   },
   "devDependencies": {
+    "knex": "^0.95.14",
+    "knex-firebird-dialect": "^1.1.7",
     "nodemon": "^2.0.15"
   }
 }
