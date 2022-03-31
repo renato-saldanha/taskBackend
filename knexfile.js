@@ -1,15 +1,18 @@
 const knexFirebirdDialect = require("knex-firebird-dialect").default;
 
-/**
- * @type { Object.<string, import("knex").Knex.Config> }
- */
 module.exports = {
   client: knexFirebirdDialect,
   connection: {
-    database: "C:/FDB/EXPRESS.FDB",
+    host: "localhost",
+    port: 3050,
     user: "sysdba",
     password: "vectordba",
+    database: "C:/Projetos/taskBackend/EXPRESS.FDB",
+    schemaName: "EXPRESS",
+    lowercase_keys: true,
   },
+  createDatabaseIfNotExists: true,
+  debug: false,
   pool: {
     min: 2,
     max: 10,
