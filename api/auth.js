@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt-nodejs");
 module.exports = (app) => {
   const logar = async (req, res) => {
     if (!req.body.email || !req.body.senha) {
-      return res.status(400).send("Dadfos incompletos!");
+      return res.status(400).send("Dados incompletos!");
     }
 
     const usuario = await app
@@ -19,7 +19,12 @@ module.exports = (app) => {
           return res.status(401).send();
         }
 
-        const payload = { id: usuario.id };
+        const payload = {
+          id: usuario.id,
+          name: usuario.name,
+          email: usuario.email,
+        };
+
         res.json({
           nome: usuario.nome,
           email: usuario.email,
@@ -31,5 +36,5 @@ module.exports = (app) => {
     }
   };
 
-  return {logar}
+  return { logar };
 };
