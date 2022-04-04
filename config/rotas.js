@@ -1,5 +1,5 @@
 module.exports = app => {
-  app.post('/cadastro', app.api.usuario.save);
+  app.post('/cadastro', app.api.usuario.gravar);
   app.post('/logar', app.api.auth.logar);
 
   app.route('/tasks')

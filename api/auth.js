@@ -1,6 +1,6 @@
 const { authSecret } = require("../.env");
 const jwt = require("jwt-simple");
-const bcrypt = require("bcrypt-nodejs");
+const bcrypt1 = require('bcryptjs');
 
 module.exports = (app) => {
   const logar = async (req, res) => {
@@ -9,14 +9,14 @@ module.exports = (app) => {
     }
 
     const usuario = await app
-      .db("usuarios")
-      .where({ email: req.body.email })
-      .first();
-
+    .db("USUARIOS")
+    .where({ email: req.body.email })
+    .first()
+    
     if (usuario) {
-      bcrypt.compare(req.body.senha, usuario.senha, (err, achou) => {
+      bcrypt1.compare(req.body.senha, usuario.senha, (err, achou) => {
         if (err || !achou) {
-          return res.status(401).send();
+          return res.status(401).send('Senha inválida!');
         }
 
         const payload = {

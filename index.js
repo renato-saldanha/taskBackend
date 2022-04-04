@@ -13,5 +13,5 @@ consign()
 app.db = db;
 
 app.listen(3000, () => {
-  console.log("Executando...");
+  console.log("Executando Backend...");
 });

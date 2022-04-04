@@ -8,15 +8,15 @@ module.exports = (app) => {
     secretOrKey: authSecret,
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
   };
-
+  
   const strategy = new Strategy(params, (payload, done) => {
     app
-      .db("usuarios")
+      .db("USUARIOS")
       .where({ id: payload.id })
       .first()
       .then((usuario) => {
         usuario
-          ? done(null, { id: usuario.id, email: usuario.email })
+          ? done(null, usuario)
           : done(null, false);
       })
       .catch((err) => done(err, false));
