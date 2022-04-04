@@ -2,15 +2,15 @@ const moment = require("moment");
 
 module.exports = (app) => {
   const listarTasks = (req, res) => {
-    const date = req.query.date ? req.query.date : moment.endOf("day").toDate();
+    const date = req.query.date ? req.query.date : moment().endOf('day').toDate();
 
     app
-      .db("tasks")
+      .db('tasks')
       .where({ IdUsuario: req.user.id })
-      .where("dataEstimada", "<=", date)
-      .ordeyBy("dataEstimada")
-      .then((tasks) => res.json(tasks))
-      .catch((err) => res.status(500).json(err));
+      .where('dataEstimada', '<=', date)
+      .ordeyBy('dataEstimada')
+      .then((tasks) => console.log(tasks))
+      .catch((err) => res.status(400).json(err));
   };
 
   const gravar = (req, res) => {
