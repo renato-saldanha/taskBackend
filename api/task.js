@@ -6,10 +6,10 @@ module.exports = (app) => {
 
     app
       .db('tasks')
-      .where({ IdUsuario: req.user.id })
-      .where('dataEstimada', '<=', date)
-      .ordeyBy('dataEstimada')
-      .then((tasks) => console.log(tasks))
+      .where({ idUsuario: req.user.id}, 
+               'dataEstimada', '<=', date)
+      .orderBy('dataEstimada')
+      .then((tasks) => res.json(tasks))
       .catch((err) => res.status(400).json(err));
   };
 
@@ -23,7 +23,7 @@ module.exports = (app) => {
     app
       .db("tasks")
       .insert(req.body)
-      .then(() => res.status(204).send("Registro salvo com sucesso!"))
+      .then( _ => res.json(req.body))
       .catch((err) => res.status(400).json(err));
   };
 

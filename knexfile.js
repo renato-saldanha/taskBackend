@@ -12,7 +12,7 @@ module.exports = {
     lowercase_keys: true,
   },
   createDatabaseIfNotExists: true,
-  debug: true,
+  debug: false,
   pool: {
     min: 2,
     max: 10,
