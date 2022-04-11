@@ -2,13 +2,14 @@ const moment = require("moment");
 
 module.exports = (app) => {
   const listarTasks = (req, res) => {
-    const date = req.query.date ? req.query.date : moment().endOf('day').toDate();
+    const date = req.query.date
+      ? req.query.date
+      : moment().endOf("day").toDate();
 
     app
-      .db('tasks')
-      .where({ idUsuario: req.user.id}, 
-               'dataEstimada', '<=', date)
-      .orderBy('dataEstimada')
+      .db("tasks")
+      .where({ idUsuario: req.user.id }, "dataEstimada", "<=", date)
+      .orderBy("dataEstimada")
       .then((tasks) => res.json(tasks))
       .catch((err) => res.status(400).json(err));
   };
@@ -23,22 +24,17 @@ module.exports = (app) => {
     app
       .db("tasks")
       .insert(req.body)
-      .then( _ => res.json(req.body))
+      .then((_) => res.json(req.body))
       .catch((err) => res.status(400).json(err));
   };
 
-  const deletar = (req, res) => {
-    app
+  const deletar = async (req, res) => {
+    await app
       .db("tasks")
       .where({ id: req.params.id, IdUsuario: req.user.id })
       .del()
-      .then((rowsDel) => {
-        if (rowsDel > 0) {
-          res.status(204).send();
-        } else {
-          const msg = `Não foi encontrada task com esse id: ${req.param.id}`;
-          res.status(400).send(msg);
-        }
+      .then((data) => {
+        res.status(204).send(data);
       })
       .catch((err) => res.status(400).json(err));
   };
@@ -63,11 +59,11 @@ module.exports = (app) => {
           return res.status(400).send(msg);
         }
 
-        const dataConclusao = task.dataConclusao ? null : new Date();
+        const dataConclusao = task.dataconclusao ? null : new Date();
         atualizarTaskConcluida(req, res, dataConclusao);
       })
       .catch((err) => res.status(400).json(err));
   };
 
-  return {listarTasks, gravar, deletar, alterarTaks };
+  return { listarTasks, gravar, deletar, alterarTaks };
 };

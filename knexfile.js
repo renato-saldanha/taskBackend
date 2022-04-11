@@ -3,7 +3,7 @@ const knexFirebirdDialect = require("knex-firebird-dialect").default;
 module.exports = {
   client: knexFirebirdDialect,
   connection: {
-    host: "127.0.0.1",
+    host: "192.168.100.3",
     port: 3050,
     user: "sysdba",
     password: "vectordba",
