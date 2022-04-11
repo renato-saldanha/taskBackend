@@ -2,3 +2,5 @@ node_modules
 *.log
 knexfile.js
 EXPRESS.FDB
+knexfile.js
+EXPRESS.FDB
