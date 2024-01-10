@@ -6,7 +6,7 @@ module.exports = {
     host: "10.1.11.77",
     port: 3050,
     user: "sysdba",
-    password: "vectordba",
+    password: "",
     database: "C:/Projetos/taskBackend/EXPRESS.FDB",
     schemaName: "EXPRESS",
     lowercase_keys: true,
